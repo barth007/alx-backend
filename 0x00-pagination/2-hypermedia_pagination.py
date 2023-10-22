@@ -67,17 +67,15 @@ class Server:
 
         data = self.get_page(page, page_size)
         hyper_linked = {}
-        if len(data) > 0:
-            hyper_linked['page_size'] = page_size
-            hyper_linked['page'] = page
-            hyper_linked['data'] = data
-            all_dataset = self.dataset()
-            count = 0
-            for data_s in all_dataset:
-                count += 1
-            all_pages = math.ceil(count / page_size)
-            hyper_linked['next_page'] = page + 1 if page < all_pages else None
-            hyper_linked['prev_page'] = page - 1 if page > 1 else None
-            hyper_linked['total_pages'] = all_pages
-            return hyper_linked
+        hyper_linked['page_size'] = page_size
+        hyper_linked['page'] = page
+        hyper_linked['data'] = data
+        all_dataset = self.dataset()  # -> list
+        count = 0
+        for data_s in all_dataset:
+            count += 1
+        total_pages = math.ceil(count / page_size)
+        hyper_linked['next_page'] = page + 1 if page < total_pages else None
+        hyper_linked['prev_page'] = page - 1 if page > 1 else None
+        hyper_linked['total_pages'] = total_pages
         return hyper_linked
