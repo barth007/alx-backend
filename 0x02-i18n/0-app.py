@@ -6,7 +6,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route("/index", strict_slashes=False)
+@app.route("/", strict_slashes=False)
 def index():
     """
     This renders an html page
