@@ -12,6 +12,7 @@ app = Flask(__name__)
 def index():
     """
     This renders an html page
+    and creates a route for it
     """
 
     return render_template('0-index.html')
