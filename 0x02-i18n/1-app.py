@@ -28,16 +28,5 @@ def index():
     return render_template('1-index.html')
 
 
-def get_locale():
-    """
-    gives the prefer language the user sends
-    as an http requests
-    """
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-babel.init_app(app, locale_selector=get_locale)
-
-
 if __name__ == "__main__":
     app.run('0.0.0.0', 5000, debug=True)
