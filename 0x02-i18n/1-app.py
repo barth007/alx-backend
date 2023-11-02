@@ -2,12 +2,14 @@
 """
 1-app.py
 """
-from flask_babel import Babel, _
-from flask import Flask, request, render_template
+from flask_babel import Babel
+from flask import Flask, render_template
 
 
 class Config:
-    """configuration of the languages """
+    """
+    configuration of languages
+    """
 
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
