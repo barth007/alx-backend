@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-1-app.py
+3-app.py
 """
-from flask_babel import Babel
+from flask_babel import Babel, gettext as _l
 from flask import Flask, render_template
 
 
@@ -21,17 +21,6 @@ app.config.from_object(Config)   # loads the configuration settings
 babel = Babel(app)
 
 
-@babel.localeselector
-def get_locale():
-    """
-    selecting the prefer language from
-    the http request header by the user
-    """
-
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-# babel.init_app(app, locale_selector=get_locale)
 
 
 @app.route('/', strict_slashes=False)
@@ -41,6 +30,19 @@ def index():
     """
 
     return render_template('2-index.html')
+
+
+# @babel.localeselector
+def get_locale():
+    """
+    selecting the prefer language from
+    the http request header by the user
+    """
+
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
+
+
+babel.init_app(app, locale_selector=get_locale)
 
 
 if __name__ == "__main__":
